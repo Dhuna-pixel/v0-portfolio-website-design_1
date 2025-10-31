@@ -36,37 +36,43 @@ export default function FeaturedWork() {
   return (
     <section id="work" className="py-24 bg-background">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="mb-16">
+        <div className="mb-16 slide-up">
           <p className="text-primary font-semibold tracking-widest text-sm uppercase mb-4">Featured Work</p>
           <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground">Selected Projects</h2>
         </div>
 
         <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
-          {projects.map((project) => (
+          {projects.map((project, index) => (
             <div
               key={project.id}
-              className="group cursor-pointer"
+              className="group cursor-pointer float-in"
+              style={{ animationDelay: `${index * 0.1}s` }}
               onMouseEnter={() => setHoveredId(project.id)}
               onMouseLeave={() => setHoveredId(null)}
             >
-              <div className="relative overflow-hidden rounded-xl mb-6 bg-muted aspect-video">
+              <div className="relative overflow-hidden rounded-xl mb-6 bg-muted aspect-video transition-all duration-500 hover:shadow-2xl">
                 <img
                   src={project.image || "/placeholder.svg"}
                   alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <ExternalLink className="w-8 h-8 text-white" />
+                  <ExternalLink className="w-8 h-8 text-white transform scale-75 group-hover:scale-100 transition-transform duration-300" />
                 </div>
               </div>
-              <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-2">{project.category}</p>
-              <h3 className="font-serif text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
+              <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-2 group-hover:translate-x-1 transition-transform duration-300">
+                {project.category}
+              </p>
+              <h3 className="font-serif text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
                 {project.title}
               </h3>
               <p className="text-muted-foreground mb-4 line-clamp-2">{project.description}</p>
               <div className="flex gap-2 flex-wrap">
                 {project.tags.map((tag) => (
-                  <span key={tag} className="text-xs px-3 py-1 bg-secondary text-foreground rounded-full">
+                  <span
+                    key={tag}
+                    className="text-xs px-3 py-1 bg-secondary text-foreground rounded-full hover:bg-primary hover:text-primary-foreground transition-all duration-300 transform hover:scale-105"
+                  >
                     {tag}
                   </span>
                 ))}
