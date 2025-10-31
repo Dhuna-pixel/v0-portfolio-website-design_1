@@ -4,31 +4,32 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #f4efe6;
-  --foreground: #162a2c;
-  --card: #fefbf6;
-  --card-foreground: #162a2c;
+  /* Updated color palette for bold, modern aesthetic */
+  --background: #0f172e;
+  --foreground: #f0f4f8;
+  --card: #1a2847;
+  --card-foreground: #f0f4f8;
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: #5e6c5b;
-  --primary-foreground: #f4efe6;
-  --secondary: #d6e0e2;
-  --secondary-foreground: #162a2c;
-  --muted: #d6e0e2;
-  --muted-foreground: #686867;
-  --accent: #5e6c5b;
-  --accent-foreground: #f4efe6;
+  --primary: #00d4ff;
+  --primary-foreground: #0f172e;
+  --secondary: #ff006e;
+  --secondary-foreground: #f0f4f8;
+  --muted: #4a5f7f;
+  --muted-foreground: #9ca3af;
+  --accent: #00d4ff;
+  --accent-foreground: #0f172e;
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: #e8dfd3;
-  --input: #fefbf6;
-  --ring: #5e6c5b;
+  --border: #2a3f5f;
+  --input: #1a2847;
+  --ring: #00d4ff;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --radius: 1rem;
+  --radius: 0.75rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -125,42 +126,49 @@
   }
 }
 
+/* Enhanced animations for dynamic portfolio */
 @layer utilities {
   .fade-in {
-    animation: fadeIn 0.6s ease-in-out;
+    animation: fadeIn 0.8s ease-in-out;
   }
 
   .slide-up {
-    animation: slideUp 0.8s ease-out;
+    animation: slideUp 1s ease-out;
+  }
+
+  .slide-down {
+    animation: slideDown 1s ease-out;
   }
 
   .scale-in {
-    animation: scaleIn 0.6s ease-out;
+    animation: scaleIn 0.8s ease-out;
   }
 
-  .float-in {
-    animation: floatIn 0.8s ease-out;
+  .float {
+    animation: float 6s ease-in-out infinite;
   }
 
-  .slide-in-left {
-    animation: slideInLeft 0.7s ease-out;
-  }
-
-  .slide-in-right {
-    animation: slideInRight 0.7s ease-out;
-  }
-
-  .pulse-soft {
-    animation: pulseSoft 2s ease-in-out infinite;
+  .glow-pulse {
+    animation: glowPulse 3s ease-in-out infinite;
   }
 
   .shimmer {
-    animation: shimmer 3s ease-in-out infinite;
+    animation: shimmer 2s ease-in-out infinite;
   }
 
-  .gradient-shift {
-    animation: gradientShift 6s ease-in-out infinite;
+  .rotate-slow {
+    animation: rotateSlow 20s linear infinite;
+  }
+
+  /* Added new blob animation for smooth, flowing movements */
+  .animate-blob {
+    animation: blobShift 8s ease-in-out infinite;
+  }
+
+  /* Added gradient text animation for color shifting effect */
+  .animate-gradient-shift {
     background-size: 200% 200%;
+    animation: gradientShift 4s ease-in-out infinite;
   }
 
   @keyframes fadeIn {
@@ -175,7 +183,18 @@
   @keyframes slideUp {
     from {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-40px);
     }
     to {
       opacity: 1;
@@ -186,7 +205,7 @@
   @keyframes scaleIn {
     from {
       opacity: 0;
-      transform: scale(0.95);
+      transform: scale(0.9);
     }
     to {
       opacity: 1;
@@ -194,66 +213,80 @@
     }
   }
 
-  @keyframes floatIn {
-    from {
-      opacity: 0;
-      transform: translateY(40px) scale(0.9);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-  }
-
-  @keyframes slideInLeft {
-    from {
-      opacity: 0;
-      transform: translateX(-40px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes slideInRight {
-    from {
-      opacity: 0;
-      transform: translateX(40px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes pulseSoft {
+  @keyframes float {
     0%,
     100% {
-      opacity: 1;
+      transform: translateY(0px);
     }
     50% {
-      opacity: 0.7;
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes glowPulse {
+    0%,
+    100% {
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 40px rgba(0, 212, 255, 0.6);
     }
   }
 
   @keyframes shimmer {
     0%,
     100% {
-      background-position: 200% 200%;
+      opacity: 0.5;
     }
     50% {
-      background-position: 0 0;
+      opacity: 1;
     }
   }
 
-  @keyframes gradientShift {
+  @keyframes rotateSlow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* New animation for floating blobs with smooth position changes */
+  @keyframes blobShift {
     0%,
     100% {
+      transform: translate(0, 0) scale(1);
+    }
+    25% {
+      transform: translate(30px, -50px) scale(1.1);
+    }
+    50% {
+      transform: translate(-20px, 30px) scale(0.9);
+    }
+    75% {
+      transform: translate(50px, 20px) scale(1.05);
+    }
+  }
+
+  /* New animation for smoothly shifting gradient text colors */
+  @keyframes gradientShift {
+    0% {
       background-position: 0% 50%;
     }
     50% {
       background-position: 100% 50%;
     }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .glass {
+    @apply backdrop-blur-md bg-white/10 border border-white/20;
+  }
+
+  .neon-border {
+    @apply relative after:absolute after:inset-0 after:rounded-lg after:p-0.5 after:bg-gradient-to-r after:from-primary after:to-secondary after:-z-10;
   }
 }

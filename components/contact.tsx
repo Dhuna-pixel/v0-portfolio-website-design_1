@@ -3,7 +3,6 @@
 import type React from "react"
 
 import { useState } from "react"
-import { Linkedin, Twitter, Dribbble, Bean as Behance } from "lucide-react"
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -18,33 +17,6 @@ export default function Contact() {
       [e.target.name]: e.target.value,
     })
   }
-
-  const socialPlatforms = [
-    {
-      name: "LinkedIn",
-      icon: Linkedin,
-      url: "https://linkedin.com",
-      color: "hover:text-blue-600",
-    },
-    {
-      name: "Twitter",
-      icon: Twitter,
-      url: "https://twitter.com",
-      color: "hover:text-blue-400",
-    },
-    {
-      name: "Dribbble",
-      icon: Dribbble,
-      url: "https://dribbble.com",
-      color: "hover:text-pink-500",
-    },
-    {
-      name: "Behance",
-      icon: Behance,
-      url: "https://behance.net",
-      color: "hover:text-blue-500",
-    },
-  ]
 
   return (
     <section id="contact" className="py-24 bg-background">
@@ -77,22 +49,16 @@ export default function Contact() {
               </div>
               <div>
                 <h3 className="font-semibold text-foreground mb-4">Follow Me</h3>
-                <div className="flex gap-6">
-                  {socialPlatforms.map((platform) => {
-                    const Icon = platform.icon
-                    return (
-                      <a
-                        key={platform.name}
-                        href={platform.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        title={platform.name}
-                        className={`text-primary transition-all duration-300 hover:scale-110 ${platform.color}`}
-                      >
-                        <Icon size={24} strokeWidth={1.5} />
-                      </a>
-                    )
-                  })}
+                <div className="flex gap-4">
+                  {["Linkedin", "Twitter", "Dribbble", "Behance"].map((platform) => (
+                    <a
+                      key={platform}
+                      href="#"
+                      className="w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center hover:bg-accent transition-colors"
+                    >
+                      {platform[0]}
+                    </a>
+                  ))}
                 </div>
               </div>
             </div>
